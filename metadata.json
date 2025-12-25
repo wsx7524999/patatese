@@ -1,0 +1,50 @@
+{
+  "project": {
+    "name": "patatese",
+    "version": "1.0.0",
+    "description": "A demonstration repository showcasing modern software development practices, including metadata management, security policies, and automated dependency monitoring.",
+    "repository": "https://github.com/wsx7524999/patatese",
+    "homepage": "https://github.com/wsx7524999/patatese",
+    "created": "2025-12-25",
+    "language": "Python"
+  },
+  "maintainers": [
+    {
+      "name": "Repository Owner",
+      "github": "wsx7524999",
+      "email": "security@example.com"
+    }
+  ],
+  "license": {
+    "type": "MIT",
+    "url": "https://opensource.org/licenses/MIT"
+  },
+  "repository_settings": {
+    "visibility": "public",
+    "default_branch": "main",
+    "has_issues": true,
+    "has_wiki": true,
+    "has_discussions": false
+  },
+  "security": {
+    "dependabot_enabled": true,
+    "secret_scanning_enabled": true,
+    "vulnerability_reporting": "See SECURITY.md for details"
+  },
+  "ci_cd": {
+    "platform": "GitHub Actions",
+    "workflows": [
+      {
+        "name": "Deploy to Amazon ECS",
+        "file": ".github/workflows/aws.yml",
+        "trigger": "release"
+      },
+      {
+        "name": "Secret Scanning",
+        "file": ".github/workflows/secret-scanning.yml",
+        "trigger": "push, pull_request"
+      }
+    ]
+  },
+  "metadata_version": "1.0"
+}
