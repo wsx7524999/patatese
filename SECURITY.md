@@ -45,7 +45,7 @@ We take all security vulnerabilities seriously. If you discover a security issue
 
 Report security vulnerabilities through one of the following channels:
 
-- **Primary Contact**: Email us at **security@example.com**
+- **Primary Contact**: Email us at **security@example.com** *(Note: Replace with actual contact email before production use)*
 - **GitHub Security Advisories**: Use the [GitHub Security Advisory](https://github.com/wsx7524999/patatese/security/advisories) feature
 - **Encrypted Communication**: For sensitive disclosures, you may request our PGP key
 
@@ -139,7 +139,7 @@ If you're contributing to this project, please:
 
 ## Contact Information
 
-- **Security Email**: security@example.com
+- **Security Email**: security@example.com *(Note: Replace with actual contact email before production use)*
 - **GitHub**: [@wsx7524999](https://github.com/wsx7524999)
 - **Project Repository**: https://github.com/wsx7524999/patatese
 

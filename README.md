@@ -19,6 +19,12 @@ This repository provides:
 - Python 3.7 or higher (for metadata management script)
 - Git
 
+### Configuration
+
+**Important**: Before using this repository in production:
+1. Update the maintainer email in `metadata.json` (line 15) from `security@example.com` to your actual contact email
+2. Update the security contact email in `SECURITY.md` (line 48) to match your actual contact email
+
 ### Installation
 
 Clone the repository:
