@@ -78,13 +78,24 @@ class MetadataHelper:
                 # Handle array indices
                 if '[' in key and ']' in key:
                     field_name = key[:key.index('[')]
-                    index = int(key[key.index('[')+1:key.index(']')])
+                    index_str = key[key.index('[')+1:key.index(']')]
+                    try:
+                        index = int(index_str)
+                    except ValueError:
+                        print(f"Error: Invalid array index '{index_str}' in field path '{field_path}'. Index must be a number.")
+                        return None
                     value = value[field_name][index]
                 else:
                     value = value[key]
             return value
-        except (KeyError, IndexError, TypeError) as e:
-            print(f"Error: Field '{field_path}' not found in metadata.")
+        except KeyError as e:
+            print(f"Error: Field '{field_path}' not found in metadata. The key {e} does not exist.")
+            return None
+        except IndexError:
+            print(f"Error: Array index out of range in field path '{field_path}'. Check that the index is valid.")
+            return None
+        except TypeError:
+            print(f"Error: Type mismatch when accessing field path '{field_path}'. Check that you're not trying to index a non-list field.")
             return None
 
     def set_field(self, field_path: str, new_value: str) -> bool:
@@ -112,7 +123,12 @@ class MetadataHelper:
             for key in keys[:-1]:
                 if '[' in key and ']' in key:
                     field_name = key[:key.index('[')]
-                    index = int(key[key.index('[')+1:key.index(']')])
+                    index_str = key[key.index('[')+1:key.index(']')]
+                    try:
+                        index = int(index_str)
+                    except ValueError:
+                        print(f"Error: Invalid array index '{index_str}' in field path '{field_path}'. Index must be a number.")
+                        return False
                     value = value[field_name][index]
                 else:
                     value = value[key]
@@ -121,7 +137,12 @@ class MetadataHelper:
             final_key = keys[-1]
             if '[' in final_key and ']' in final_key:
                 field_name = final_key[:final_key.index('[')]
-                index = int(final_key[final_key.index('[')+1:final_key.index(']')])
+                index_str = final_key[final_key.index('[')+1:final_key.index(']')]
+                try:
+                    index = int(index_str)
+                except ValueError:
+                    print(f"Error: Invalid array index '{index_str}' in field path '{field_path}'. Index must be a number.")
+                    return False
                 value[field_name][index] = parsed_value
             else:
                 value[final_key] = parsed_value
@@ -130,8 +151,14 @@ class MetadataHelper:
             print(f"Successfully updated '{field_path}' to: {parsed_value}")
             return True
             
-        except (KeyError, IndexError, TypeError) as e:
-            print(f"Error: Cannot set field '{field_path}': {e}")
+        except KeyError as e:
+            print(f"Error: Cannot set field '{field_path}'. The key {e} does not exist in the metadata structure.")
+            return False
+        except IndexError:
+            print(f"Error: Array index out of range in field path '{field_path}'. Check that the index is valid.")
+            return False
+        except TypeError:
+            print(f"Error: Type mismatch when accessing field path '{field_path}'. Check that you're not trying to index a non-list field.")
             return False
 
     def validate(self) -> bool:
